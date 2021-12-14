@@ -3,7 +3,7 @@
 #include "UserTree.h"
 
 User* UserTree::addUserNode(string u){
-    if(this->root == nullptr){
+    if(root == nullptr){
         root = new User; //ask if this needs to be deleted later
         // cout << "Before" << root->user_id << endl;
         root->user_id = u;
@@ -14,7 +14,8 @@ User* UserTree::addUserNode(string u){
         //less or more alphabetically
         if(u < root->user_id){
             if(root->left_user == nullptr){
-                root->left_user = new User(u); //delete ?this too
+                root->left_user = new User; //delete ?this too
+                root->left_user->user_id = u;
                 return root->left_user;
             }
             else{
@@ -23,8 +24,9 @@ User* UserTree::addUserNode(string u){
         }
         else{
             if(root->right_user == nullptr){
-                root->right_user = new User(u); //delete ?this too
-                return root->left_user;
+                root->right_user = new User;//delete ?this too
+                root->right_user->user_id = u;
+                return root->right_user;
             }
             else{
                 addToSubTree(root->right_user, u);
